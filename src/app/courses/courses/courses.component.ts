@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { Course } from '../model/course';
+import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -8,16 +11,13 @@ import { Course } from '../model/course';
 })
 export class CoursesComponent implements OnInit {
 
-  courses: Course[] = [
-    {_id: "1", name: "Angular", category: "Front-end"},
-    {_id: "2", name: "ReactJS", category: "Front-end"},
-    {_id: "3", name: "VueJS", category: "Front-end"},
-    {_id: "4", name: "Java", category: "Backend-end"},
-    {_id: "5", name: "SpringBoot", category: "Backend-end"},
-  ];
+  // courses$: Observable<Course[]>; // Tratamento específico de dados para material table
+  courses: Course[] = []; // Tratamento genérico de dados para qq table
   displayedColumns: string[] = ['name', 'category'];
 
-  constructor() {
+  constructor(private coursesService: CoursesService) {
+    // this.courses$ = this.coursesService.list(); // Tratamento específico de dados para material table
+    this.coursesService.list().subscribe(courses => this.courses = courses); // Tratamento genérico de dados para qq table
   }
 
   ngOnInit(): void {
