@@ -2,7 +2,7 @@
   <mat-toolbar color="primary">Cursos disponíveis</mat-toolbar>
   <mat-card-content>
     <!-- <div *ngIf="courses$ | async as courses; else loading"> Usado quando tratamento específico de dados para material table -->
-    <div *ngIf="courses.length > 0; else loading">
+    <div *ngIf="courses.length; else loading">
       <table mat-table [dataSource]="courses" class="mat-elevation-z8">
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
@@ -30,3 +30,5 @@
     </ng-template>
   </mat-card-content>
 </mat-card>
+
+
